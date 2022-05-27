@@ -13,10 +13,28 @@ public class Employee {
 		
 	}
 	
+	/*
+	 *  ===== Replace the no-arg constructor in Employee with a constructor that takes empId, name, ssn, and salary. ====
+	 */
+	
 	Employee(int empId,String name,int ssn,String salary) {
 		
 		
 	}
+	
+	/*
+	 * Add a method named printEmployee to print the Employee object details.
+	 */
+	void PrintEmployee() {
+		System.out.println("Employee ID: "+empId);
+		System.out.println("Name of employee: "+name);
+		System.out.println("Serial number: "+ssn);
+		System.out.println("Salary: "+salary);
+	}
+	
+	/*
+	 * Remove all the setter methods except setName.
+	 */
 	
 	public int getEmpId() {
 		return empId;
