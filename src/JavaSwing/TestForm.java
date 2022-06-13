@@ -37,7 +37,7 @@ public static void main(String[] args) {
 	form.add(jt);
 	
 	JButton jb = new JButton("Login");
-	jb.setBounds(700,150,120,20);
+	jb.setBounds(680,150,120,20);
 	form.add(jb);
 	
 	form.setVisible(true);
