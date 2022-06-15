@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.mysql.cj.protocol.Resultset;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
@@ -14,6 +17,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class LoginForm extends JFrame {
@@ -81,16 +89,9 @@ public class LoginForm extends JFrame {
 				String un = UserNametxt.getText();
 				String psw = passwordTxt.getText();
 				
-				if (un.equals ("ram") && psw.equals("123")) {
-					
-					JOptionPane.showMessageDialog(null, "Login Success");
-					
-					new HomePage().setVisible(true);
-					dispose();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Login failed");
-				}
+//				
+
+				
 				
 				
 			

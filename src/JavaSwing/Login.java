@@ -12,6 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -47,18 +52,18 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(127, 73, 87, 24);
-		contentPane.add(lblNewLabel);
+		JLabel UserNameText = new JLabel("Username");
+		UserNameText.setBounds(127, 73, 87, 24);
+		contentPane.add(UserNameText);
 		
 		Name = new JTextField();
 		Name.setBounds(213, 72, 146, 26);
 		contentPane.add(Name);
 		Name.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(127, 135, 61, 16);
-		contentPane.add(lblNewLabel_1);
+		JLabel PasswordText = new JLabel("Password");
+		PasswordText.setBounds(127, 135, 61, 16);
+		contentPane.add(PasswordText);
 		
 		Pswrd = new JPasswordField();
 		Pswrd.setBounds(213, 130, 146, 26);
@@ -71,7 +76,21 @@ public class Login extends JFrame {
 				String U = Name.getText();
 				String P = Pswrd.getText();
 				
-				if(U.equals("Pawan") && P.equals("12345678")) {
+				 try {
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "");
+						
+						//login sql 
+						
+						String sql = "select * from user where username ='"+U+"' and password = '"+P+"'";
+						
+						Statement stm = con.createStatement();
+						
+						ResultSet rs = stm.executeQuery(sql);
+						
+					
+				
+				if(rs.next()) {
 					
 					JOptionPane.showMessageDialog(null, "Login success");
 					new Welcome().setVisible(true);
@@ -80,6 +99,10 @@ public class Login extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "Login failed");
 				}
+				 } catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 		});
 		btnNewButton.setBounds(170, 200, 117, 29);

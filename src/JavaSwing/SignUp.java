@@ -13,15 +13,20 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class SignUp extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JPasswordField passwordField;
+	private JTextField FirstNametext;
+	private JTextField LastNameText;
+	private JTextField UsernameText;
+	private JPasswordField passwordtext;
 
 	/**
 	 * Launch the application.
@@ -76,28 +81,53 @@ public class SignUp extends JFrame {
 		lblNewLabel_1_3.setBounds(86, 252, 94, 23);
 		contentPane.add(lblNewLabel_1_3);
 		
-		textField = new JTextField();
-		textField.setBounds(220, 120, 206, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		FirstNametext = new JTextField();
+		FirstNametext.setBounds(220, 120, 206, 26);
+		contentPane.add(FirstNametext);
+		FirstNametext.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(220, 161, 206, 26);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		LastNameText = new JTextField();
+		LastNameText.setBounds(220, 161, 206, 26);
+		contentPane.add(LastNameText);
+		LastNameText.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(220, 205, 206, 26);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		UsernameText = new JTextField();
+		UsernameText.setBounds(220, 205, 206, 26);
+		contentPane.add(UsernameText);
+		UsernameText.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(220, 250, 206, 26);
-		contentPane.add(passwordField);
+		passwordtext = new JPasswordField();
+		passwordtext.setBounds(220, 250, 206, 26);
+		contentPane.add(passwordtext);
 		
 		JButton btnNewButton = new JButton("Sign Up");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				String FName = FirstNametext.getText();
+				String LName = LastNameText.getText();
+				String UN = UsernameText.getText();
+				String Psw = passwordtext.getText();
+				
+				try {
+					
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "");
+					
+					String sql = "insert into user(id,fname,lname,username,password)values(101,'"+FName+"','"+LName+"','"+UN+"','"+Psw+"') ";
+					
+					Statement  stm = con.createStatement();
+					stm.execute(sql);
+					
+					
+						
+					
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				new Login().setVisible(true);
 				dispose();
 			}
