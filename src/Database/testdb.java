@@ -13,10 +13,10 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 	
 	
 	String sql = "insert into user(fname,lname,username,password)values('Anwesh','Dahal','anwesh','7878') ";
-		Statement  stm = con.createStatement();
-			stm.execute(sql);
-			con.close();
-			System.out.println("added success");
+//		Statement  stm = con.createStatement();
+//			stm.execute(sql);
+//			con.close();
+//			System.out.println("added success");
 	
 	
 	
